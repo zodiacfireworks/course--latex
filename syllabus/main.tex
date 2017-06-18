@@ -1,0 +1,295 @@
+%% Preamble
+%% ----------------------------------------------------------------------
+\documentclass[12pt, twoside, a4paper, final]{article}
+\usepackage[some]{background}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{pgfcalendar}
+\usepackage{pdflscape}
+\usepackage{colortbl}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage{pgfplots}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{charter}
+\usepackage{hologo}
+\usepackage{lipsum}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{avant}
+
+%% Settings
+%% ----------------------------------------------------------------------
+%% Hyperref package settings
+\hypersetup{
+    pdftitle={Prueba de estrés y rendimiento para el Servidor de Microsoft Dynamics NAV\textregistered. Instalaci\'{o}n de Norma},
+    pdfauthor={Mart\'{i}n Josemar\'{i}a Vuelta Rojas},
+    pdfpagelayout=OneColumn,
+    pdfnewwindow=true,
+    pdfdisplaydoctitle=true,
+    pdfstartview=XYZ,
+    plainpages=false,
+    unicode=true,
+    bookmarksnumbered=true,
+    bookmarksopen=true,
+    bookmarksopenlevel=3,
+    breaklinks=true,
+    colorlinks=true,
+    pdfborder={0 0 0}
+}
+
+%% Red square in the title page og the document
+\backgroundsetup{
+    scale=1,
+    angle=0,
+    opacity=1,
+    contents={
+        \begin{tikzpicture}[remember picture,overlay]
+            \path [fill=red-softbutterfly] (current page.north west) rectangle (-8.5, 0);
+            \path [fill=blue-softbutterfly] (current page.south west) rectangle (-8.5, 0);
+        \end{tikzpicture}
+    }
+}
+
+%% Customizing title formats for chapter (use of sans serif font family)
+\titleformat{\title}[display]
+    {\normalfont\rmfamily\Huge\bfseries\color{grey-800}}
+    {}{0pt}{}
+
+%% Customizing title formas for sections (use of sans serif font family)
+\titleformat{\section}
+    {\normalfont\sffamily\large\bfseries\color{grey-800}}
+    {\thesection}{1em}{}
+
+%% Customizing header spacings in page geometry
+\geometry{
+    a4paper,
+    headheight=25pt,
+    headsep=12pt,
+}
+
+%% Pgfplots settings
+\pgfplotsset{compat=1.14}
+\usepgfplotslibrary{dateplot}
+\usepgfplotslibrary{groupplots}
+
+
+%% Command definitions
+%% ----------------------------------------------------------------------
+\makeatletter
+
+%% Color definitions
+\definecolor{red-softbutterfly}{rgb}{0.7843137254901961, 0.21568627450980393, 0.21568627450980393}
+\definecolor{blue-softbutterfly}{rgb}{0.08627450980392157, 0.17647058823529413, 0.3137254901960784}
+\definecolor{red-A700}{rgb}{1.0000, 0.0000, 0.0000}
+\definecolor{grey-050}{rgb}{0.9804, 0.9804, 0.9804}
+\definecolor{grey-800}{rgb}{0.2588, 0.2588, 0.2588}
+\definecolor{grey-900}{rgb}{0.1216, 0.1216, 0.1216}
+
+\newcommand{\globalcolor}[1]{\color{#1}\global\let\default@color\current@color}
+
+
+%% parragraph spacings
+% \setlength{\parindent}{4em}
+% \setlength{\parskip}{0.5em}
+
+%% Table columns types
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+%% Serif type font as default for all document
+\renewcommand{\familydefault}{\rmdefault}
+
+%% Clear double page with the standar text "This page is intentionally left in blank" translated to spanish
+\def\cleardoubleintentionalpage{
+    \clearpage\if@twoside%
+    \ifodd\c@page\else
+    \vspace*{\fill}
+    \begin{center}
+    % Use this for spanish
+    \rm\emph{Página intencionalmente dejada en blanco.}
+    % Use this for english
+    % \rm\emph{This page is intentionally left in blank}
+    \end{center}
+    \vspace{\fill}
+    \thispagestyle{empty}
+    \newpage
+    \if@twocolumn\hbox{}\newpage\fi\fi\fi
+}
+
+%% Completely clean pages
+\def\cleardoublepage{
+    \clearpage\if@twoside%
+    \ifodd\c@page\else
+    \vspace{\fill}
+    \thispagestyle{empty}
+    \newpage
+    \if@twocolumn\hbox{}\newpage\fi\fi\fi
+}
+
+%% Flip margins
+\newcommand*{\flipmargins}{%
+    \clearpage
+    \setlength{\@tempdima}{\oddsidemargin}%
+    \setlength{\oddsidemargin}{\evensidemargin}%
+    \setlength{\evensidemargin}{\@tempdima}%
+    \if@reversemargin
+        \normalmarginpar
+    \else
+        \reversemarginpar
+    \fi
+}
+
+%% Header and footer styles
+%% \def\unionlabellogo{\includegraphics[width=2.5cm]{./uln-logo.pdf}}
+%% \def\microsoftnavlogo{\includegraphics[width=3.7cm]{./nav-logo.png}}
+\fancypagestyle{unionlabel}{
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{1pt}%
+    \renewcommand{\footrulewidth}{0pt}%
+    %% \fancyhead[EL]{
+    %%   \parbox[b]{2.5cm}{\unionlabellogo}%
+    %% }
+    %% \fancyhead[OR]{
+    %%   \parbox[b]{3.7cm}{\microsoftnavlogo}%
+    %% }
+    \fancyfoot[C]{
+      {
+        \begin{centering}
+          \thepage
+        \end{centering}
+      }
+    }
+}
+
+%% Registered mark text
+\newcommand{\registeredmark}{\textsuperscript{\small{\textregistered}}}
+\makeatother
+
+
+%% Document
+%% ----------------------------------------------------------------------
+\AtBeginDocument{\globalcolor{grey-900}}
+\begin{document}
+    %% Front Page -------------------------------------------------------
+    \begin{titlepage}
+        \BgThispage
+        \pagecolor{grey-050}
+        \newgeometry{left=5cm,top=6cm,bottom=6cm,right=3.5cm} %defines the geometry for the titlepage
+        {\noindent\includegraphics[width=7cm]{../resources/SoftButterfly-LaTeX-Logo.pdf}\par}
+        {\noindent\color{red-softbutterfly}\makebox[0pt][l]{\rule{1.3\textwidth}{1pt}}\par}
+        % {\noindent\raggedright
+        %     \color{grey-800}\large
+        %     \textit{Curso}\par}
+        \vfill
+        {\noindent\raggedright
+            \color{grey-800}\huge
+            \textsf{Preparación de documentos con} \LaTeX\par}
+        \vfill
+        {\noindent
+            \color{blue-softbutterfly}
+            \textsf{Sílabus elaborado por}\par}
+        {\noindent
+            \color{grey-800}
+            \large\textsf{Martín Josemaría Vuelta Rojas}\par}
+        \vskip\baselineskip
+        {\noindent
+            \color{grey-800}
+            \textsf{Lima, \today}\par}
+        \afterpage{\cleardoubleintentionalpage}
+    \end{titlepage}
+    \restoregeometry
+    \pagecolor{grey-050}
+
+    %% Tables of contents -----------------------------------------------
+    % \flipmargins
+    % \tableofcontents
+    % \cleardoubleintentionalpage
+
+    % \listoffigures
+    % \cleardoubleintentionalpage
+
+    % \listoftables
+    % \cleardoubleintentionalpage
+
+    %% Page style -------------------------------------------------------
+    %% Report content ---------------------------------------------------
+    {\noindent\raggedright
+        \color{grey-800}\huge
+        \bfseries\textsf{Preparación de documentos con} \LaTeX\par}
+    \vspace{3em}
+    \section{Introducción}
+        Curso de nivel intermedio, con una introducción básica, elaborado para afianzar los conocimientos y técnicas para una redacción efectiva en {\LaTeX} y las directrices para una correcta aplciacion de estilos y formatos para diversos tipos de publicaciones, desde artíclos académicos hasta libros y revistas.
+
+        Dada la fuerte presencia de {\LaTeX} en el entorno académico este curso hace énfasis y provee las herramientas necesarias para lograr artículos y revistas académicas de calidad, y para la elaboración de notas de clases y exámenes, siendo ideal para estudiantes y profesores que deseen iniciar en {\LaTeX} o afianzar sus conocimientos previos.
+
+    \section{Detalles}
+        \begin{description}[style=nextline]
+            \item[Nivel] Intermedio.
+            \item[Método] Teórico - Práctico.
+            \item[Duración] 16 horas\footnote{Se sugiere una división en 4 sesiones de 4 horas con un receso de 15 mintuos en cada sesión.}
+            \item[Publico objetivo] Estudiantes y profesores que deseen iniciar en {\LaTeX} o afianzar sus conocimientos previos.
+        \end{description}
+
+    \section{Temario}
+    \begin{description}
+        \item[Sesión 1: Introducción] \hfill
+            \begin{enumerate}
+                \item Introduccion: {\LaTeX} y {\TeX}.
+                \item Instalación: Recomendaciones para Linux, Windows y Mac.
+                \item Estrcutura de un documento en {\LaTeX}.
+                \item Compilación.
+                \item Sintaxis básica: Grupos, entornos y comandos.
+                \item Formato de página.
+                \item Formato de texto, títulos y párrafos.
+                \item Colores, Fuentes y Caracteres especiales.
+                \item Soporte de idiomas.
+                \item Listados.
+                \item Tablas.
+                \item Entornos flotantes, figuras and leyendas.
+            \end{enumerate}
+
+        \item[Sesión 2: Referencias, matemáticas y programación] \hfill
+            \begin{enumerate}
+                \item Notas a pie de página y al margen.
+                \item Enlaces, etiquetas y referencias cruzadas.
+                \item Bibliografía incrustada.
+                \item Manejo de bibliografías con \hologo{BibTeX}.
+                \item Estilos y formatos para bibliografía.
+                \item Índices: contenidos, figuras y tablas.
+                \item Matemáticas básicas con {\LaTeX}.
+                \item Matemáticas avanzadas \hologo{AmSLaTeX}.
+                \item Macros en {\LaTeX}.
+            \end{enumerate}
+
+        \item[Sesión 3: Generación de gráficos] \hfill
+            \begin{enumerate}
+                \item Gráficos procedurales
+                \item PGF/TikZ
+                \item Sintaxis básica
+                \item Gráficos en 2D
+                \item Formas
+                \item Funciones
+                \item Carga de datos externos
+                \item Gráficos en 3D
+            \end{enumerate}
+
+        \item[Sesión 4: Tipos de documentos y buenas prácticas] \hfill
+            \begin{enumerate}
+                \item Tipos de documentos
+                \item Artículos
+                \item Reportes
+                \item Libros
+                \item Buenas prácticas para el desarrollo de documentos
+                \item Modularidad
+                \item Archivos de estilo
+            \end{enumerate}
+    \end{description}
+\end{document}

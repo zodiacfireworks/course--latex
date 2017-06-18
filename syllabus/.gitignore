@@ -1,0 +1,9 @@
+# Direcotry patterns
+
+# File patterns
+*.aux
+*.lof
+*.log
+*.lot
+*.out
+*.toc

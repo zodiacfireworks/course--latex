@@ -1,0 +1,117 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{pdflscape}
+\usepackage{epstopdf}
+\usepackage{fancyhdr}
+\usepackage{fancyvrb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{luximono}
+\usepackage{multicol}
+\usepackage{rotating}
+\usepackage{tabularx}
+\usepackage{textcomp}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amstext}
+\usepackage{charter}
+\usepackage{amsbsy}
+\usepackage{amsthm}
+\usepackage{lipsum}
+\usepackage{minted}
+\usepackage{natbib}
+\usepackage{array}
+\usepackage{color}
+\usepackage{float}
+
+%% Settings
+%% ----------------------------------------------------------------------
+%% Hyperref package settings
+\hypersetup{
+    pdftitle={Prueba de estrés y rendimiento para el Servidor de Microsoft Dynamics NAV\textregistered. Instalaci\'{o}n de Norma},
+    pdfauthor={Mart\'{i}n Josemar\'{i}a Vuelta Rojas},
+    pdfpagelayout=OneColumn,
+    pdfnewwindow=true,
+    pdfdisplaydoctitle=true,
+    pdfstartview=XYZ,
+    plainpages=false,
+    unicode=true,
+    bookmarksnumbered=true,
+    bookmarksopen=true,
+    bookmarksopenlevel=3,
+    breaklinks=true,
+    colorlinks=true,
+    pdfborder={0 0 0}
+}
+
+%% Beamer Package
+\usefonttheme{structuresmallcapsserif}
+\usetheme{Madrid}
+\usecolortheme{crane}
+% gets rid of bottom navigation bars
+% \setbeamertemplate{footline}[frame number]{}
+% gets rid of bottom navigation symbols
+\setbeamertemplate{navigation symbols}{}
+% gets rid of footer
+% will override 'frame number' instruction above
+% comment out to revert to previous/default definitions
+% \setbeamertemplate{footline}{}
+
+
+%% Command definitions
+%% ----------------------------------------------------------------------
+\makeatletter
+
+%% Color definitions
+\definecolor{red-softbutterfly}{rgb}{0.7843137254901961, 0.21568627450980393, 0.21568627450980393}
+\definecolor{blue-softbutterfly}{rgb}{0.08627450980392157, 0.17647058823529413, 0.3137254901960784}
+\definecolor{red-A700}{rgb}{1.0000, 0.0000, 0.0000}
+\definecolor{grey-050}{rgb}{0.9804, 0.9804, 0.9804}
+\definecolor{grey-800}{rgb}{0.2588, 0.2588, 0.2588}
+\definecolor{grey-900}{rgb}{0.1216, 0.1216, 0.1216}
+
+\newcommand{\globalcolor}[1]{\color{#1}\global\let\default@color\current@color}
+
+
+%% Table columns types
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+%% Serif type font as default for all document
+\renewcommand{\familydefault}{\rmdefault}
+
+%% Registered mark text
+\newcommand{\registeredmark}{\textsuperscript{\small{\textregistered}}}
+\makeatother
+
+
+%% Document
+%% ----------------------------------------------------------------------
+\begin{document}
+
+\title[About Beamer]{Introducción a \LaTeX}
+\subtitle{Conceptos básicos}
+\author[@zodiacfireworks]{Martín~Vuelta\inst{1}\inst{2}}
+
+\institute[]{
+	\inst{1}%
+	Facultad de Física\\
+	Universidad Nacional Mayor de San Marcos
+	\and
+	\inst{2}%
+	Dirección de Desarrollo de Software\\
+	SoftButterfly
+}
+
+\date{\today}
+\frame{\titlepage}
+
+\begin{frame}
+	\frametitle{Sample frame title}
+	This is a text in first frame. This is a text in first frame. This is a text in first frame.
+\end{frame}
+
+\end{document}
