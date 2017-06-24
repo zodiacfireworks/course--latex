@@ -1,0 +1,10 @@
+% Preámbulo
+% Declaraciones del tipo de documento que se creará
+\documentclass[opciones]{tipo_de_documento}
+% Y de los paquetes que se empelarán
+\usepackage[opciones]{nombre_del_paquete}
+
+% Cuerpo del documento
+\begin{document}
+    % Contenido del documento
+\end{document}

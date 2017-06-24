@@ -26,6 +26,7 @@
 \usepackage{color}
 \usepackage{float}
 
+
 %% Settings
 %% ----------------------------------------------------------------------
 %% Hyperref package settings
@@ -46,10 +47,14 @@
     pdfborder={0 0 0}
 }
 
-%% Beamer Package
+%% Graphicx Settings
+\graphicspath{{resources/img/}}
+
+%% Beamer Package Settins
 \usefonttheme{structuresmallcapsserif}
 \usetheme{Madrid}
 \usecolortheme{crane}
+
 % gets rid of bottom navigation bars
 % \setbeamertemplate{footline}[frame number]{}
 % gets rid of bottom navigation symbols
@@ -74,7 +79,6 @@
 
 \newcommand{\globalcolor}[1]{\color{#1}\global\let\default@color\current@color}
 
-
 %% Table columns types
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
@@ -92,13 +96,13 @@
 %% ----------------------------------------------------------------------
 \begin{document}
 
-\title[About Beamer]{Introducción a \LaTeX}
+\title[\LaTeX]{Introducción a \LaTeX}
 \subtitle{Conceptos básicos}
 \author[@zodiacfireworks]{Martín~Vuelta\inst{1}\inst{2}}
 
 \institute[]{
 	\inst{1}%
-	Facultad de Física\\
+	Facultad de Ciencias Físicas\\
 	Universidad Nacional Mayor de San Marcos
 	\and
 	\inst{2}%
@@ -106,12 +110,45 @@
 	SoftButterfly
 }
 
+% \logo{%
+%    \includegraphics[height=0.5cm]{SoftButterfly-LaTeX-Logo.pdf}%
+% }
+
 \date{\today}
 \frame{\titlepage}
 
-\begin{frame}
-	\frametitle{Sample frame title}
-	This is a text in first frame. This is a text in first frame. This is a text in first frame.
-\end{frame}
+\section{Contenidos}
+    \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents
+    \end{frame}
 
+\section{{\TeX} \& {\LaTeX}}
+    \begin{frame}
+        \frametitle{{\TeX} \& {\LaTeX}}
+
+        \begin{block}{{\TeX}}
+            {\TeX} es un lenguaje de computadora diseñado para ser usado en la tipografía; En particular, para la composición de matemáticas y otras materias técnicas.
+        \end{block}
+
+        \href{https://www.tug.org/whatis.html}{https://www.tug.org/whatis.html}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{{\TeX} \& {\LaTeX}}
+
+        \begin{block}{{\LaTeX}}
+            {\LaTeX} es un sistema de preparación de documentos para tipografía de alta calidad. Se utiliza con mayor frecuencia para documentos técnicos o científicos de tamaño medio a grande, pero puede utilizarse para casi cualquier forma de publicación.
+        \end{block}
+
+        \href{http://www.latex-project.org/about/}{http://www.latex-project.org/about/}
+    \end{frame}
+
+\section{Estructura de un documento en {\LaTeX}}
+    \begin{frame}
+        \frametitle{Estructura de un documento en {\LaTeX}}
+        \inputminted{text}{resources/snippets/document_structure.txt}
+
+
+    \end{frame}
 \end{document}
