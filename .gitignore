@@ -1,8 +1,8 @@
 *.aux
 *.log
-*.log
 *.nav
 *.out
-*.snm
-*.toc
 *.pyg*
+*.snm
+*.synctex*
+*.toc
