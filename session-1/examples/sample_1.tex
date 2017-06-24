@@ -1,6 +1,99 @@
-\documentclass{article}
+% Preambulo -----------
+% Tipo de documento
+\documentclass[a4paper]{article}
 
+% Paquetes
+% \usepackage[OPCIONES]{NOMBBRE DEL PAQUETE}
+
+% Inputenc: Input encoding
+% Codificación de texto, emplear preferibemente
+% utf-8
+\usepackage[utf8]{inputenc}
+
+% Babel: Paquete para traducciones automáticas
+\usepackage[spanish]{babel}
+
+% Graphicx: Paquete para la iserción de imágenes
+\usepackage{graphicx}
+
+% Wrapfig: Paquete para envolver la figura con el texto
+\usepackage{wrapfig}
+
+% Lipsum: Paquete para texto de relleno
+\usepackage{lipsum}
+
+
+
+% Cuerpo del documento -----
 \begin{document}
+    \title{\LaTeX: Sesión 1}
+    \author{Martin Vuelta}
+    % \date{17 de Junio del 2016}
+    \date{\today}
+    \maketitle
 
+    \section{Uso de tildes}
+        Uso de tildes sin \texttt{inputenc}
 
+        \begin{verbatim}
+        Alg\'{u}n texto: \'{e} \'{i}
+        \end{verbatim}
+
+        Uso de tildes con \texttt{inputenc}
+
+        \begin{verbatim}
+        Algún texto: é í
+        \end{verbatim}
+
+    \section{Uso de entornos}\label{sec:2}
+
+        Un entorno tiene la siguiente sintaxis
+
+        \begin{verbatim}
+            \begin[OPCIONES]{nombre del entorno}
+            ... contenido ...
+            \end{nombre del entorno}
+        \end{verbatim}
+
+    \section{Uso de imágenes}
+        Las imágenes se insertan haciendo uso del paquete \texttt{graphicx}
+
+        Primer uso: etiqueta \texttt{includegraphics}
+
+        \includegraphics[scale=0.5]{imagen.jpg}
+
+        \begin{center}
+            \includegraphics[height=3cm]{imagen.jpg}
+        \end{center}
+
+        \includegraphics[width=\textwidth]{imagen.jpg}
+
+        \begin{figure}
+            \centering
+            \includegraphics[
+                width=0.5\textwidth,
+                angle=45
+            ]{imagen.jpg}
+            \caption{Chica de anime con gafas rojas}
+            \label{fig:1}
+        \end{figure}
+
+    \section{Uso de Lipsum e imágenes alineadas}
+        \lipsum[1-2]
+
+        \begin{wrapfigure}{l}{0.25\textwidth}
+            \centering
+            \includegraphics[
+                width=0.25\textwidth
+            ]{imagen.jpg}
+        \end{wrapfigure}
+
+        \lipsum[3-4]
+
+    \section{Referencias internas}
+        Referencia a imagen: \emph{fig.} \ref{fig:1}
+
+        Referencia a sección: \textit{sec.} \ref{sec:2}
+
+        \emph{Donec ornare nulla sed dictum luctus. \emph{Aenean} et dui vel orci posuere volutpat sit amet sed est}.
 \end{document}
