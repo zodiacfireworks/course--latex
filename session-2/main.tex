@@ -1,0 +1,80 @@
+%% Preambulo
+\documentclass[a4paper, 12pt, final]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{charter}
+\usepackage{lipsum}
+
+%% Configuraciones
+% Configuraciones del paquete HyperRef
+\hypersetup{
+    pdftitle={Sesión 2},
+    pdfauthor={Martín Vuelta},
+    pdfpagelayout=OneColumn,
+    pdfnewwindow=true,
+    pdfdisplaydoctitle=true,
+    unicode=true,
+    bookmarksnumbered=true,
+    bookmarksopen=false,
+    breaklinks=true,
+    colorlinks=true
+}
+
+% Configuraciones del paquete graphicx
+\graphicspath{{resources/img/}}
+
+
+%% Personalización de Usuario
+\makeatletter
+
+% Personalización de fuentes
+% \rmdefault : roman (serif)
+% \sfdefault : sans serif
+\renewcommand{\familydefault}{\rmdefault}
+
+% Personalización de maketitle
+% \textsc: Small Caps (Mayusculas pequeñas)
+% \textsf: Fuente Sans Serif
+% \par: final de párrafo (Solo aplicable entre \makeatletter y \makeatother)
+% \vskip SIZE : Espaciado vertical
+% \
+% \tiny
+% \scriptsize
+% \footnotesize
+% \small
+% \normalsize
+% \Large
+%
+\def\@maketitle{
+    \begin{center}
+        \includegraphics[height=1cm]{san_marcos_logo.jpg}\par
+        {\scriptsize \textsc Universidad Nacional Mayor de San Marcos\par}\vskip 1.5em
+        {\Large \textsf \@title \par}
+        \vskip 0.5em
+        {\small \textit{Prof. \@author} \par}
+    \end{center}
+    \vskip 0.25em
+    \noindent\rule{1\textwidth}{1pt}
+    \vskip 0.25em
+    {\noindent Alumno:\hfill\@date\par}
+    \noindent\rule{1\textwidth}{1pt}
+    \vskip 0.5em
+}
+
+\makeatother
+
+%% Cuerpo del documento
+\begin{document}
+    \title{Práctica Calificada de Física Matemática}
+    \author{Martin Vuelta}
+    \date{\today}
+    \maketitle
+    
+    \section{Seccion 1}\label{sec:1}
+        \lipsum[1-4]
+        
+        Esta oración tendrá un pié de página.\footnote{\lipsum[2]} Y esta oración tendrá una referencia hacia el título de la sección  \ref{sec:1}. Este texto aparecerá en formato de \texttt{ancho fijo}.
+
+\end{document}
