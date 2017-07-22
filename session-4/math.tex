@@ -1,0 +1,114 @@
+%% Preambulo
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+%% Ajustes
+
+%% Personalizaciones
+\makeatletter
+
+\makeatother
+
+%% Documento
+\begin{document}
+\title{Paquete \texttt{amsmath}}
+\author{Martin Vuelta}
+\maketitle
+
+\section{Entorno de ecuaciones}
+
+\subsection{Entorno \texttt{equation}}
+\begin{verbatim}
+\begin{equation}
+    m \frac{d^{2} x}{d t^{2}} = - k x
+\end{equation}
+\end{verbatim}
+
+\begin{equation}
+    m \frac{d^{2} x}{d t^{2}} = - k x
+\end{equation}
+
+\subsection{Entorno \texttt{equation*}}
+\begin{verbatim}
+\begin{equation*}
+    m \frac{d^{2} x}{d t^{2}} = - k x
+\end{equation*}
+\end{verbatim}
+
+\begin{equation*}
+    m \frac{d^{2} x}{d t^{2}} = - k x
+\end{equation*}
+
+\subsection{Entorno \texttt{align}}
+\begin{verbatim}
+\begin{align}
+    (a + b)^2 &= (a + b)(a + b) \nonumber \\
+              &= a^2 + ab + ba + b^2 \\
+              &= a^2 + 2ab + b^2 \nonumber
+\end{align}
+\end{verbatim}
+
+\begin{align}
+    (a + b)^2 &= (a + b)(a + b) \nonumber \\
+              &= a^2 + ab + ba + b^2 \\
+              &= a^2 + 2ab + b^2 \nonumber
+\end{align}
+
+\subsection{Entorno \texttt{gather}}
+\begin{verbatim}
+\begin{gather}
+    a^2 + b^2 = c^2 \\
+\sin^2(\theta) + \cos^2(\theta) = 1
+\end{gather}
+\end{verbatim}
+
+\begin{gather}
+    a^2 + b^2 = c^2 \\
+\sin^2(\theta) + \cos^2(\theta) = 1
+\end{gather}
+
+
+\subsection{Entorno \texttt{multiline}}
+\begin{verbatim}
+\begin{multline}
+\framebox[0.65\columnwidth]{A} \\
+\shoveleft{\framebox[0.50\columnwidth]{B}} \\
+\shoveright{\framebox[0.55\columnwidth]{C}} \\
+\framebox[0.65\columnwidth]{D}
+\end{multline}
+\end{verbatim}
+
+
+\begin{multline}
+\framebox[0.65\columnwidth]{A} \\
+\shoveleft{\framebox[0.50\columnwidth]{B}} \\ 
+\shoveright{\framebox[0.55\columnwidth]{C}} \\
+\framebox[0.65\columnwidth]{D}
+\end{multline} 
+
+\subsection{Entorno \texttt{split}}
+\begin{verbatim}
+\begin{equation}
+    \begin{split}
+        H_{c} & = \frac{1}{2n} \sum_{l=0}^{n} (-1)^{l}
+        (n - l)^{p} \sum_{l_{1} + \dots + l_{p}=l}
+        \prod_{i=1}^{p} \binom{n_i}{l_i} \\
+        & \quad \cdot [(n-l) - 
+        (n_{i} - l_{i})]^{n_{i} - l_{i}}
+        \cdot \left[(n - l)^{2} - 
+        \sum_{j=1}^{p} (n_{i} - l_{i})^2 \right]
+    \end{split}
+\end{equation}
+\end{verbatim}
+
+\begin{equation}
+    \begin{split}
+        H_{c} & = \frac{1}{2n} \sum_{l=0}^{n} (-1)^{l} (n - l)^{p}
+        \sum_{l_{1} + \dots + l_{p}=l} \prod_{i=1}^{p} \binom{n_i}{l_i} \\
+              & \quad \cdot [(n-l) - (n_{i} - l_{i})]^{n_{i} - l_{i}}
+        \cdot \left[(n - l)^{2} - \sum_{j=1}^{p} (n_{i} - l_{i})^2 \right]
+    \end{split}
+\end{equation}
+
+\end{document}
