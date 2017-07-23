@@ -111,4 +111,61 @@
     \end{split}
 \end{equation}
 
+\subsection{Entorno \texttt{array}}
+\begin{verbatim}
+\begin{equation}
+    \left(
+        \begin{array}{c c c}
+            1 & 2 & 3 \\
+            4 & 5 & 6 \\
+            7 & 8 & 9
+        \end{array}
+    \right)
+    \times
+    \left(
+        \begin{array}{c c c}
+            1 & 2 & 3 \\
+            4 & 5 & 6 \\
+            7 & 8 & 9
+        \end{array}
+    \right) 
+\end{equation}
+\end{verbatim}
+
+\begin{equation}
+    \left(
+        \begin{array}{c c c}
+            1 & 2 & 3 \\
+            4 & 5 & 6 \\
+            7 & 8 & 9
+        \end{array}
+    \right)
+    \times
+    \left(
+        \begin{array}{c c c}
+            1 & 2 & 3 \\
+            4 & 5 & 6 \\
+            7 & 8 & 9
+        \end{array}
+    \right) 
+\end{equation}
+
+\subsection{Entorno \texttt{cases}}
+
+\begin{equation}
+    \delta_{ij} = \begin{cases}
+    0 & i \neq j \\
+    1 & i = j
+    \end{cases}
+\end{equation}
+
+\begin{equation}
+    \delta_{ij} = \left\{
+    \begin{array}{c c}
+        0 & i \neq j \\
+        1 & i = j
+    \end{array}
+    \right.
+\end{equation}
+
 \end{document}
