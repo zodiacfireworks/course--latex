@@ -1,0 +1,124 @@
+%% Preambulo
+\documentclass{elsarticle}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{lipsum}
+%% Configuraciones
+
+
+%% Personalización
+\makeatletter
+
+% Redefinicion del pie de pàgina en version de preprint
+\renewcommand\ps@pprintTitle{}
+
+% Redefinicion del entorno abstract para que muestre como
+% tìtulo una palabra pasada como argumento
+\renewenvironment{abstract}[1]{\global\setbox\absbox=\vbox\bgroup
+	\hsize=\textwidth
+	\def\baselinestretch{1}%
+	\noindent\unskip\textbf{#1}% 1 representa el argumento
+	\par\medskip\noindent\unskip\ignorespaces}
+{\egroup}
+
+% redefinicion del enrvironment keywords
+\renewcommand\keyword[1]{%
+	\def\sep{\unskip, }%
+	\def\MSC{\@ifnextchar[{\@MSC}{\@MSC[2000]}}
+	\def\@MSC[##1]{\par\leavevmode\hbox {\it ##1~MSC:\space}}%
+	\def\PACS{\par\leavevmode\hbox {\it PACS:\space}}%
+	\def\JEL{\par\leavevmode\hbox {\it JEL:\space}}%
+	\global\setbox\keybox=\vbox\bgroup\hsize=\textwidth
+	\normalsize\normalfont\def\baselinestretch{1}
+	\parskip\z@
+	\noindent\textit{#1}
+	\raggedright % Keywords are not justified.
+	\ignorespaces}
+
+\renewcommand\endkeyword{\par \egroup}
+
+% Comandos propios!
+\newcommand{\water}{\(\mathrm{H_{2}O}\)}
+\newcommand{\waveequation}[1]{\frac{\partial^{2} #1}{\partial t^{2}} = c^{2} \nabla^2 #1 }
+\newcommand{\ket}[1]{\left|#1\right\rangle}
+\newcommand{\bra}[1]{\left\langle#1\right|}
+\newcommand{\braket}[2]{\left\langle #1|#2\right\rangle}
+
+\newcount\temp
+\newcount\fone
+\newcount\ftwo
+\newcount\counter
+
+\newcommand{\fibonacci}[1]{
+	\counter=#1
+	\fone=1
+	\ftwo=1
+	\temp=0
+	\the\fone, \the\ftwo
+	\fibloop
+}
+
+\newcommand{\fibloop}{
+	\let\next=\fibloop
+	\temp=\fone
+	\fone=\ftwo
+	\advance \ftwo by \temp
+	\ifnum\counter
+		\let\next=\relax
+	\else
+		\advance \counter by -1
+	\fi
+	\the\two
+	\next
+}
+
+
+\makeatother
+
+
+
+%% Documento
+\begin{document}
+	\author[unmsm]{Martin Vuelta}
+	\ead{martin.vuelta@gmail.com}
+
+	\address[unmsm]{Universidad Nacional Mayor de San Marcos}
+
+	\begin{abstract}{Resumen}
+		\lipsum[1]
+	\end{abstract}
+
+	\begin{keyword}{Frases y palabras clave: }
+		Palabra 1\sep
+		Palabra 2\sep
+		Palabra 3\sep
+		Palabra 4
+	\end{keyword}
+	\maketitle
+
+	\section{Sección de eprueba}
+	La formula del agua es \water
+
+	La ecuacion de la función de onda es
+	\begin{equation}
+		\waveequation{\varphi}
+	\end{equation}
+
+	\begin{equation}
+		\hat{H}\ket{\alpha} = a\ket{\alpha}
+	\end{equation}
+
+	\begin{equation}
+		\bra{\alpha}\hat{H} = \bra{\alpha}a
+	\end{equation}
+
+	\begin{equation}
+		\braket{\alpha}{\beta} = \braket{\beta}{\alpha}
+	\end{equation}
+
+	\fibonacci{5}
+
+	\lipsum[1-5]
+\end{document}
